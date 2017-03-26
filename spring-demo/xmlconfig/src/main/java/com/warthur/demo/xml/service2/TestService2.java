@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 public class TestService2 {
 
     public TestService2() {
+
+        System.out.println("*************************");
         System.out.println("TestService2.TestService2()");
+        System.out.println("*************************");
     }
 }
