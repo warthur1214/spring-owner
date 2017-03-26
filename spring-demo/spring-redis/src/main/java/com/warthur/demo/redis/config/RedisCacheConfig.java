@@ -1,4 +1,4 @@
-package com.warthur.demo.redis.comfig;
+package com.warthur.demo.redis.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
