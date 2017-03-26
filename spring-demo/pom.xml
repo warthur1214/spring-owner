@@ -19,5 +19,6 @@
 	<modules>
 		<module>fileupload</module>
 		<module>xmlconfig</module>
+		<module>spring-redis</module>
 	</modules>
 </project>
