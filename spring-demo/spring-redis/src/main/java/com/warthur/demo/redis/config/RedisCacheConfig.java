@@ -33,6 +33,9 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     @Value("${spring.redis.password}")
     private String password;
 
+    @Value("${spring.redis.database}")
+    private int database;
+
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
@@ -48,15 +51,19 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         factory.setPort(port);
         factory.setTimeout(timeout); //设置连接超时时间
         factory.setPassword(password);
+        factory.setDatabase(database);
         return factory;
     }
 
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        setSerializer(template); //设置序列化工具，这样ReportBean不需要实现Serializable接口
-        template.afterPropertiesSet();
-        return template;
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(factory);
+
+        // long类型无法序列化
+        // setSerializer(template); //设置序列化工具，这样ReportBean不需要实现Serializable接口
+        // template.afterPropertiesSet();
+        return redisTemplate;
     }
 
     private void setSerializer(StringRedisTemplate template) {

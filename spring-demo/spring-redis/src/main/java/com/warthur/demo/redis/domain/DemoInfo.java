@@ -14,7 +14,7 @@ public class DemoInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue @Column(name = "use_id")
+    @GeneratedValue @Column(name = "user_id")
     private long userId;
     private String tel;
     private String password;
