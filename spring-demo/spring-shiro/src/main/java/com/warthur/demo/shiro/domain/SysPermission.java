@@ -14,16 +14,19 @@ public class SysPermission {
 	@Id @GeneratedValue
 	@Column(name = "permission_id")
 	private long permssionId;
+	@Column(length = 20)
 	private String name;
 
-	@Column(columnDefinition = "enum('menu', 'button')", name = "resource_type")
+	@Column(columnDefinition = "enum('menu', 'button')", name = "resource_type", length = 10)
 	private String resourceType;
+	@Column(length = 128)
 	private String url;
+	@Column(length = 20)
 	private String permission;
 
 	@Column(name = "parent_id")
 	private Long parentId;
-	@Column(name = "parent_ids")
+	@Column(name = "parent_ids", length = 128)
 	private String parentIds;
 	private Boolean available = Boolean.FALSE;
 

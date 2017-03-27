@@ -15,7 +15,9 @@ public class RoleInfo implements Serializable {
 	@Id @GeneratedValue
 	@Column(name = "role_id")
 	private long roleId;
+	@Column(length = 20)
 	private String role;
+	@Column(length = 128)
 	private String description;
 	private Boolean available = Boolean.FALSE;
 

@@ -16,12 +16,14 @@ public class UserInfo implements Serializable {
 	@Column(name = "user_id")
 	private long userId;
 
-	@Column(unique = true, name = "user_name")
+	@Column(unique = true, name = "user_name", length = 20)
 	private String userName;
 
-	@Column(name = "nick_name")
+	@Column(name = "nick_name", length = 50)
 	private String nickName;
+	@Column(length = 50)
 	private String password;
+	@Column(length = 20)
 	private String salt;
 	private byte state;
 
