@@ -18,4 +18,4 @@ spring:
         strategy: org.hibernate.cfg.DefaultNamingStrategy
     properties:
       hibernate:
-        dialect = org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect

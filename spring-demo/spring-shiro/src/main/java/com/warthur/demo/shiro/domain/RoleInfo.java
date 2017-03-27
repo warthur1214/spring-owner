@@ -2,6 +2,7 @@ package com.warthur.demo.shiro.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +22,18 @@ public class RoleInfo implements Serializable {
 	private String description;
 	private Boolean available = Boolean.FALSE;
 
+	@Column(name = "create_time",
+			updatable = false,
+			columnDefinition = "DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createTime;
+
+	@Column(name = "update_time",
+			insertable = false,
+			columnDefinition = "DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateTime;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "t_role_permission",
 			joinColumns = {@JoinColumn(name = "roleId")},
@@ -32,6 +45,22 @@ public class RoleInfo implements Serializable {
 			joinColumns = {@JoinColumn(name = "roleId")},
 			inverseJoinColumns = {@JoinColumn(name = "userId")})
 	private List<UserInfo> userInfos;
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public long getRoleId() {
 		return roleId;

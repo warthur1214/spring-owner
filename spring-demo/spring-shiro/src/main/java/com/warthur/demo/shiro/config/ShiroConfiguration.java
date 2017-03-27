@@ -1,5 +1,6 @@
 package com.warthur.demo.shiro.config;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -14,6 +15,31 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfiguration {
+
+	@Bean
+	public SecurityManager securityManager(){
+		DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+		//设置realm.
+		securityManager.setRealm(myShiroRealm());
+		return securityManager;
+	}
+
+	@Bean
+	public MyShiroRealm myShiroRealm(){
+		MyShiroRealm myShiroRealm = new MyShiroRealm();
+		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());;
+		return myShiroRealm;
+	}
+
+	@Bean
+	public HashedCredentialsMatcher hashedCredentialsMatcher(){
+		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+
+		hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
+		hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5(md5(""));
+
+		return hashedCredentialsMatcher;
+	}
 
 	/**
 	 * ShiroFilterFactoryBean 处理拦截资源文件问题。
@@ -55,8 +81,4 @@ public class ShiroConfiguration {
 		return shiroFilterFactoryBean;
 	}
 
-	@Bean
-	public SecurityManager securityManager(){
-		return new DefaultWebSecurityManager();
-	}
 }

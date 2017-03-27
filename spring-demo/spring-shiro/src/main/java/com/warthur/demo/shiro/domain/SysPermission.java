@@ -1,6 +1,7 @@
 package com.warthur.demo.shiro.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,11 +31,39 @@ public class SysPermission {
 	private String parentIds;
 	private Boolean available = Boolean.FALSE;
 
+	@Column(name = "create_time",
+			updatable = false,
+			columnDefinition = "DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createTime;
+
+	@Column(name = "update_time",
+			insertable = false,
+			columnDefinition = "DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateTime;
+
 	@ManyToMany
 	@JoinTable(name = "t_role_permission",
 			joinColumns = {@JoinColumn(name = "permissionId")},
 			inverseJoinColumns = {@JoinColumn(name = "roleId")})
 	private List<RoleInfo> roles;
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public long getPermssionId() {
 		return permssionId;
