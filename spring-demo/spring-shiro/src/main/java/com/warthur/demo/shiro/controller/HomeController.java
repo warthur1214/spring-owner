@@ -49,9 +49,11 @@ public class HomeController {
 				msg = "else >> "+exception;
 				System.out.println("else -- >" + exception);
 			}
+
+
 		}
+		// 此方法不处理登录成功,由shiro进行处理. 成功跳转，浏览器不能有缓存
 		map.put("msg", msg);
-		// 此方法不处理登录成功,由shiro进行处理.
 		return "/login";
 	}
 }

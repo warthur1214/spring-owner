@@ -118,6 +118,14 @@ public class UserInfo implements Serializable {
 		this.roleList = roleList;
 	}
 
+	/**
+	 * 密码盐.
+	 * @return
+	 */
+	public String getCredentialsSalt(){
+		return this.userName+this.salt;
+	}
+
 	@Override
 	public String toString() {
 		return "UserInfo{" +
