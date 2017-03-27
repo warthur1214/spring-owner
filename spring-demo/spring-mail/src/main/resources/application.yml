@@ -1,0 +1,21 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: warthur@163.com
+    password: yongqiang1214
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
