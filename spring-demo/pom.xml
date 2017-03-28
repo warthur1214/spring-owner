@@ -23,6 +23,7 @@
 		<module>spring-shiro</module>
 		<module>spring-mail</module>
 		<module>spring-test</module>
+		<module>spring-main</module>
 	</modules>
 
 	<dependencies>

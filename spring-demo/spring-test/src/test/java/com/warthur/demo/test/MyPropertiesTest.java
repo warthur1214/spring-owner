@@ -24,5 +24,7 @@ public class MyPropertiesTest {
 		Assert.assertEquals("吴永强", myProperties.getName());
 		Assert.assertEquals(26, myProperties.getAge());
 		Assert.assertEquals("吴永强： 26", myProperties.getDesc());
+		Assert.assertEquals("left", myProperties.getHands().get(0));
+		System.out.println(myProperties.getHands().get(0));
 	}
 }

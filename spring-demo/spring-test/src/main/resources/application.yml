@@ -5,6 +5,7 @@ com:
       name: 吴永强
       age: 26
       desc: ${com.warthur.properties.name}： ${com.warthur.properties.age}
+      hands: [left, right]
   # 动态配置
   math:
     properties:
@@ -29,6 +30,8 @@ server:
     max-threads: 800
     uri-encoding: UTF-8
     basedir: /tmp/springboot-tomcat
+  # 修改访问uri http://ip:port/spring-boot
+#  context-path: /spring-boot
 logging:
   path: /tmp/springboot-tomcat/logs
   file: myapp.log
