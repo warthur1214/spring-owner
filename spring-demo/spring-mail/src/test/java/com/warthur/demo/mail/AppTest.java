@@ -1,5 +1,7 @@
 package com.warthur.demo.mail;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by admin on 2017/3/27.
@@ -71,6 +76,27 @@ public class AppTest {
 
 		FileSystemResource file = new FileSystemResource(new File("C:\\Users\\admin\\Pictures\\22222.jpg"));
 		helper.addInline("head", file);
+		mailSender.send(mimeMessage);
+	}
+
+	@Test
+	public void sendTemplateMail() throws Exception {
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+		helper.setFrom("warthur@163.com");
+		helper.setTo("wuyongqiang@chinaubi.com");
+		helper.setSubject("模板邮件（邮件主题）");
+
+		Map<String, Object> model = new HashMap<>();
+		model.put("userName", "吴永强");
+		Configuration configuration = new Configuration(Configuration.VERSION_2_3_0);
+		configuration.setClassForTemplateLoading(this.getClass(), "/templates");
+		Template template = configuration.getTemplate("email.ftl");
+
+		String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+		helper.setText(html, true);
+
 		mailSender.send(mimeMessage);
 	}
 }
