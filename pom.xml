@@ -31,6 +31,15 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+
+			<!--不实用自带log方式，可另配log4-->
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>org.springframework.boot</groupId>-->
+					<!--<artifactId>spring-boot-starter-logging</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
+
 		</dependency>
 
 		<dependency>

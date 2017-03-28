@@ -1,0 +1,34 @@
+# 自定义配置
+com:
+  warthur:
+    properties:
+      name: 吴永强
+      age: 26
+      desc: ${com.warthur.properties.name}： ${com.warthur.properties.age}
+  # 动态配置
+  math:
+    properties:
+      value: ${random.value}
+      number: ${random.int}
+      bignumber: ${random.long}
+      test1: ${random.int(10)}
+      test2: ${random.int[10, 20]}
+# 加载多环境配置文件
+spring:
+  profiles:
+    active: test
+
+server:
+  error:
+    path: /error
+  port: 8080
+  session:
+    timeout: 60
+
+  tomcat:
+    max-threads: 800
+    uri-encoding: UTF-8
+    basedir: /tmp/springboot-tomcat
+logging:
+  path: /tmp/springboot-tomcat/logs
+  file: myapp.log
