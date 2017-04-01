@@ -7,6 +7,8 @@
 	<modules>
 		<module>spring-eureka</module>
 		<module>spring-eureka-client</module>
+		<module>spring-eureka-ribbon</module>
+		<module>spring-eureka-feign</module>
 	</modules>
 	<packaging>pom</packaging>
 
