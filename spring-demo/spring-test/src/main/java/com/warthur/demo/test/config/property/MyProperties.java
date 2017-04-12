@@ -16,6 +16,15 @@ public class MyProperties {
 	private int age;
 	private String desc;
 	private List<String> hands;
+	private Girl girl;
+
+	public Girl getGirl() {
+		return girl;
+	}
+
+	public void setGirl(Girl girl) {
+		this.girl = girl;
+	}
 
 	public List<String> getHands() {
 		return hands;
@@ -56,6 +65,7 @@ public class MyProperties {
 				", age=" + age +
 				", desc='" + desc + '\'' +
 				", hands=" + hands +
+				", girl=" + girl +
 				'}';
 	}
 }

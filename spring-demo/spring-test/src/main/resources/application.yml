@@ -6,6 +6,9 @@ com:
       age: 26
       desc: ${com.warthur.properties.name}： ${com.warthur.properties.age}
       hands: [left, right]
+      girl:
+        name: lin
+        age: 25
   # 动态配置
   math:
     properties:
