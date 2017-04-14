@@ -1,6 +1,8 @@
 package com.warthur.demo.test.restful;
 
+import com.warthur.demo.test.config.property.MyProperties;
 import com.warthur.demo.test.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -13,6 +15,9 @@ import java.util.*;
 public class UserRestService {
 
 	private static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+
+	@Autowired
+	private MyProperties properties;
 
 	@GetMapping("")
 	public List<User> getUserList() {
@@ -46,5 +51,10 @@ public class UserRestService {
 		// url中的id可通过@PathVariable绑定到函数的参数中
 		users.remove(id);
 		return"success";
+	}
+
+	@GetMapping("/my")
+	public void property() {
+		System.out.println(1111);
 	}
 }
