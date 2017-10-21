@@ -20,6 +20,7 @@
 	<modules>
 		<module>spring-demo</module>
 		<module>spring-cloud</module>
+		<module>spring-netty</module>
 	</modules>
 
 	<properties>

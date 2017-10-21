@@ -1,12 +1,17 @@
 package com.warthur.demo.test.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * Created by admin on 2017/3/28.
  */
 public class User {
 
+	@JSONField(name = "user_id")
 	private long id;
+	@JSONField(name = "user_name")
 	private String name;
+	@JSONField(name = "user_age")
 	private Integer age;
 
 	public long getId() {

@@ -1,6 +1,9 @@
 package com.warthur.demo.test;
 
+import com.alibaba.fastjson.JSONObject;
+import com.warthur.demo.test.domain.User;
 import com.warthur.demo.test.restful.UserRestService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +30,18 @@ public class UserRestServiceTest extends MockMvcResultMatchers {
 	@Before
 	public void setup() {
 		mvc = MockMvcBuilders.standaloneSetup(new UserRestService()).build();
+	}
+
+	@Test
+	public void testJsonConvertObject() {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("user_id", 123111);
+		jsonObject.put("user_name", "warthur");
+		jsonObject.put("user_age", 27);
+
+		User user = JSONObject.parseObject(jsonObject.toJSONString(), User.class);
+
+		Assert.assertEquals("吴永强", "吴永强");
 	}
 
 	@Test
