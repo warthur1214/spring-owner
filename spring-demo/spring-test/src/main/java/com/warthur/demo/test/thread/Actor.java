@@ -27,12 +27,12 @@ public class Actor extends Thread {
         System.out.println(Thread.currentThread().getName() + "演出结束了！");
     }
 
-    public static void main(String[] args) {
-        Thread actor = new Actor();
-
-        actor.setName("Mr Thread");
-        actor.start();
-
-        new Thread(new Actress(), "Ms 女士").start();
-    }
+    // public static void main(String[] args) {
+    //     Thread actor = new Actor();
+    //
+    //     actor.setName("Mr Thread");
+    //     actor.start();
+    //
+    //     new Thread(new Actress(), "Ms 女士").start();
+    // }
 }

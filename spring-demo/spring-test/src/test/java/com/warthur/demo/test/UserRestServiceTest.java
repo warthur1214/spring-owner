@@ -41,7 +41,7 @@ public class UserRestServiceTest extends MockMvcResultMatchers {
 
 		User user = JSONObject.parseObject(jsonObject.toJSONString(), User.class);
 
-		Assert.assertEquals("吴永强", "吴永强");
+		Assert.assertEquals(User.class, user.getClass());
 	}
 
 	@Test

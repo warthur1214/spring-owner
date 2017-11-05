@@ -56,7 +56,7 @@ public class Stage extends Thread {
         System.out.println("------------战争结束---------");
     }
 
-    public static void main(String[] args) {
-        new Stage().start();
-    }
+    // public static void main(String[] args) {
+    //     new Stage().start();
+    // }
 }
