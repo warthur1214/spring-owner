@@ -24,6 +24,7 @@
 		<module>spring-mail</module>
 		<module>spring-test</module>
 		<module>spring-main</module>
+		<module>spring-web</module>
 	</modules>
 
 	<dependencies>
