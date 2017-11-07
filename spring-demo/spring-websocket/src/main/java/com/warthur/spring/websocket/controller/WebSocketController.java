@@ -13,50 +13,44 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @Log4j
-public class ChatController {
+@MessageMapping("channel")
+public class WebSocketController {
 
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
 
 	/**
-	 *
+	 * 点对点消息
 	 * @param chatMessage
 	 * @return
 	 */
 	@MessageMapping("/chat")
-	@SendToUser("/chat")
-	public ChatMessage sendToUser(@Payload ChatMessage chatMessage) {
-
-		messagingTemplate.convertAndSendToUser(chatMessage.getReceiver(), "/chat/sendmsg", chatMessage);
+	@SendToUser(value = "/channel/chat", broadcast = false)
+	public ChatMessage sendToUser(@Payload ChatMessage chatMessage, Principal principal) {
+		log.error(principal.getName());
 		return chatMessage;
 	}
 
 	/**
-	 * 发消息给指定用户
-	 * @param chatMessage
-	 * @return
-	 */
-	@MessageMapping("/chat/sendmsg")
-	@SendToUser("/channel/public")
-	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-
-		return chatMessage;
-	}
-
-	/**
-	 * 上线广播通知所有client
+	 * 广播通知所有client
 	 * @param chatMessage
 	 * @param headerAccessor
 	 * @return
 	 */
-	@MessageMapping("/chat.addUser")
+	@MessageMapping("/publish")
 	@SendTo("/channel/public")
 	public ChatMessage addUser(@Payload ChatMessage chatMessage,
 	                           SimpMessageHeaderAccessor headerAccessor) {
 
-		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		if (chatMessage.getType() == ChatMessage.MessageType.JOIN) {
+			headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		} else if (chatMessage.getType() == ChatMessage.MessageType.JOIN) {
+			headerAccessor.getSessionAttributes().remove("username");
+		}
 		return chatMessage;
 	}
 

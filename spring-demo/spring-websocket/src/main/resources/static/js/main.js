@@ -24,7 +24,7 @@ function connect(event) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
-        var socket = new SockJS('/ws');
+        var socket = new SockJS('/chatServer');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
@@ -39,7 +39,7 @@ function onConnected() {
     stompClient.subscribe('/user/'+ username + '/chat', onMessageReceived);
 
     // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
+    stompClient.send("/app/channel/publish",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
@@ -65,7 +65,7 @@ function sendMessage(event) {
             receiver: "warthur"
         };
 
-        stompClient.send("/user/warthur/chat", {}, JSON.stringify(chatMessage));
+        stompClient.send("/user/warthur/channel/chat", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
