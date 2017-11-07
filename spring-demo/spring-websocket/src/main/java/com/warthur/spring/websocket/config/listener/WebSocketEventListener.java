@@ -35,6 +35,7 @@ public class WebSocketEventListener {
 					.sender(username)
 					.build();
 
+			// 广播用户离线消息
 			messagingTemplate.convertAndSend("/channel/public", chatMessage);
 		}
 	}
