@@ -22,6 +22,6 @@ public class ChatMessage implements Serializable {
 	private String receiver;
 
 	public enum MessageType {
-		CHAT, JOIN, LEAVE;
+		CHAT, HEART_BEAT, JOIN, LEAVE;
 	}
 }

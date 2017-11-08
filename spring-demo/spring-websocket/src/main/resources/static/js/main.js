@@ -39,7 +39,7 @@ function onConnected() {
     stompClient.subscribe('/user/'+ username + '/chat', onMessageReceived);
 
     // Tell your username to the server
-    stompClient.send("/app/channel/publish",
+    stompClient.send("/app/socket/publish",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
@@ -53,6 +53,22 @@ function onError(error) {
     connectingElement.style.color = 'red';
 }
 
+function sendNotice(event) {
+    var messageContent = messageInput.value.trim();
+
+    if(messageContent && stompClient) {
+        var chatMessage = {
+            sender: username,
+            content: messageInput.value,
+            type: 'CHAT',
+            receiver: "warthur"
+        };
+
+        stompClient.send("/app/socket/notice", {}, JSON.stringify(chatMessage));
+        messageInput.value = '';
+    }
+    event.preventDefault();
+}
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
@@ -65,7 +81,7 @@ function sendMessage(event) {
             receiver: "warthur"
         };
 
-        stompClient.send("/user/warthur/channel/chat", {}, JSON.stringify(chatMessage));
+        stompClient.send("/user/warthur/chat", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
@@ -122,3 +138,4 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+// messageForm.addEventListener('submit', sendNotice, true)

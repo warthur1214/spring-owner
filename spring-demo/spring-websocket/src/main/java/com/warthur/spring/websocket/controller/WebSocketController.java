@@ -8,7 +8,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +16,7 @@ import java.security.Principal;
 
 @RestController
 @Log4j
-@MessageMapping("channel")
+@MessageMapping("socket")
 public class WebSocketController {
 
 	@Autowired
@@ -29,10 +28,16 @@ public class WebSocketController {
 	 * @return
 	 */
 	@MessageMapping("/chat")
-	@SendToUser(value = "/channel/chat", broadcast = false)
 	public ChatMessage sendToUser(@Payload ChatMessage chatMessage, Principal principal) {
 		log.error(principal.getName());
 		return chatMessage;
+	}
+
+	@MessageMapping("/notice")
+	@SendTo("/channel/public")
+	public void noticeServer(@Payload ChatMessage chatMessage, Principal principal) {
+		log.error(principal.getName());
+
 	}
 
 	/**
