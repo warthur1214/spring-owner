@@ -67,7 +67,7 @@ function sendNotice(event) {
         var chatMessage = {
             fromOpenId: username,
             type: 'CHAT',
-            toOpenId: "warthur",
+            toOpenId: "ovb5KwiPg6JUtrlslq36iCuJdHl8",
             content: messageInput.value,
             date: "2017-01-01 00:00:00",
             token: ""
@@ -86,13 +86,13 @@ function sendMessage(event) {
         var chatMessage = {
             fromOpenId: username,
             type: 'CHAT',
-            toOpenId: "warthur",
+            toOpenId: "ovb5KwiPg6JUtrlslq36iCuJdHl8",
             content: messageInput.value,
             date: "2017-01-01 00:00:00",
             token: ""
         };
 
-        stompClient.send("/user/warthur/chat", {}, JSON.stringify(chatMessage));
+        stompClient.send("/user/ovb5KwiPg6JUtrlslq36iCuJdHl8/chat", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
@@ -148,5 +148,5 @@ function getAvatarColor(messageSender) {
 }
 
 usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
-// messageForm.addEventListener('submit', sendNotice, true)
+// messageForm.addEventListener('submit', sendMessage, true)
+messageForm.addEventListener('submit', sendNotice, true)
