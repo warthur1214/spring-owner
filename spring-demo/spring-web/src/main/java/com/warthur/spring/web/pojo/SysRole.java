@@ -1,10 +1,12 @@
 package com.warthur.spring.web.pojo;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "t_sys_role")
-
+@Data
 public class SysRole {
 
 	@Id
