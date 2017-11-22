@@ -21,7 +21,7 @@ public class SysRole {
 			insertable = false,
 			updatable = false)
 	private Calendar updateTime;
-	@Column(name = "update_time",
+	@Column(name = "create_time",
 			columnDefinition = "datetime not null default current_timestamp",
 			insertable = false,
 			updatable = false)

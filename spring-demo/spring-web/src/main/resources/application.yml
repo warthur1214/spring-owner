@@ -6,6 +6,7 @@ spring:
     password: yongqiang
   thymeleaf:
     cache: false
+    mode: HTML5
   jpa:
     hibernate:
       ddl-auto: update
