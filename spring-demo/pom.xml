@@ -25,6 +25,7 @@
 		<module>spring-test</module>
 		<module>spring-web</module>
 		<module>spring-websocket</module>
+		<module>spring-webservice</module>
 	</modules>
 
 	<dependencies>
