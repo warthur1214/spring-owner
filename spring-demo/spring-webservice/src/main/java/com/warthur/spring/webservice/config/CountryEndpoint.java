@@ -11,7 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class CountryEndpoint {
-	private static final String NAMESPACE_URI = "http://localhost:8080/ws/";
+	private static final String NAMESPACE_URI = "http://spring.warthur.com/webservice/domain";
 
 	@Autowired
 	private CountryRepository countryRepository;

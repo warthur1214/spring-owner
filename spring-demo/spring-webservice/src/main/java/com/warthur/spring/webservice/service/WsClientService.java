@@ -10,7 +10,7 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import javax.annotation.PostConstruct;
 
 @Service
-public class WsClient extends WebServiceGatewaySupport {
+public class WsClientService extends WebServiceGatewaySupport {
 
 	@Autowired
 	private Jaxb2Marshaller jaxb2Marshaller;
