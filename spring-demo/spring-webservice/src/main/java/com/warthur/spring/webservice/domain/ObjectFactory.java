@@ -2,7 +2,7 @@
 // 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.7 生成的
 // 请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // 在重新编译源模式时, 对此文件的所有修改都将丢失。
-// 生成时间: 2017.12.13 时间 10:17:46 AM CST 
+// 生成时间: 2017.12.13 时间 02:34:31 PM CST 
 //
 
 
@@ -37,6 +37,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SetCountryRequest }
+     * 
+     */
+    public SetCountryRequest createSetCountryRequest() {
+        return new SetCountryRequest();
+    }
+
+    /**
+     * Create an instance of {@link SetCountryResponse }
+     * 
+     */
+    public SetCountryResponse createSetCountryResponse() {
+        return new SetCountryResponse();
+    }
+
+    /**
+     * Create an instance of {@link Country }
+     * 
+     */
+    public Country createCountry() {
+        return new Country();
+    }
+
+    /**
      * Create an instance of {@link GetCountryRequest }
      * 
      */
@@ -50,14 +74,6 @@ public class ObjectFactory {
      */
     public GetCountryResponse createGetCountryResponse() {
         return new GetCountryResponse();
-    }
-
-    /**
-     * Create an instance of {@link Country }
-     * 
-     */
-    public Country createCountry() {
-        return new Country();
     }
 
 }

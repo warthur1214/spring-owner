@@ -45,4 +45,16 @@ public class CountryRepository {
 		Assert.notNull(name, "The country's name must not be null");
 		return countries.get(name);
 	}
+
+	public Country updateCountry(String name, String newName) {
+		Assert.notNull(name, "The country's name must not be null");
+
+		Country country = countries.get(name);
+		Assert.notNull(country, "The country must not be null");
+
+		country.setName(newName);
+		countries.remove(name);
+		countries.put(newName, country);
+		return country;
+	}
 }

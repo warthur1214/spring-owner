@@ -1,6 +1,7 @@
 package com.warthur.spring.webservice.controller;
 
 import com.warthur.spring.webservice.domain.GetCountryResponse;
+import com.warthur.spring.webservice.domain.SetCountryResponse;
 import com.warthur.spring.webservice.service.WsClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,12 @@ public class IndexController {
 	@GetMapping("/callws/{country}")
 	public Object callWs(@PathVariable String country) {
 		GetCountryResponse response = wsClientService.getCountry(country);
+		return response.getCountry();
+	}
+
+	@GetMapping("/callws/{name}/{newName}")
+	public Object callWs(@PathVariable String name, @PathVariable String newName) {
+		SetCountryResponse response = wsClientService.setCountry(name, newName);
 		return response.getCountry();
 	}
 }

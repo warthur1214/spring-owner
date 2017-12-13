@@ -1,6 +1,6 @@
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://spring.warthur.com/webservice/domain" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:8080/ws/" targetNamespace="http://localhost:8080/ws/">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://spring.warthur.com/webservice/domain" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://spring.warthur.com/webservice/domain" targetNamespace="http://spring.warthur.com/webservice/domain">
 	<wsdl:types>
-		<xs:schema xmlns:tns="http://spring.warthur.com/webservice/domain" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://spring.warthur.com/webservice/domain">
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://spring.warthur.com/webservice/domain">
 			<xs:element name="getCountryRequest">
 				<xs:complexType>
 					<xs:sequence>
@@ -9,6 +9,21 @@
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="getCountryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="country" type="tns:country"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setCountryRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="newName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setCountryResponse">
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="country" type="tns:country"/>
@@ -33,15 +48,25 @@
 		</xs:schema>
 	</wsdl:types>
 	<wsdl:message name="getCountryResponse">
-		<wsdl:part element="sch:getCountryResponse" name="getCountryResponse"></wsdl:part>
+		<wsdl:part element="tns:getCountryResponse" name="getCountryResponse"></wsdl:part>
 	</wsdl:message>
 	<wsdl:message name="getCountryRequest">
-		<wsdl:part element="sch:getCountryRequest" name="getCountryRequest"></wsdl:part>
+		<wsdl:part element="tns:getCountryRequest" name="getCountryRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="setCountryResponse">
+		<wsdl:part element="tns:setCountryResponse" name="setCountryResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="setCountryRequest">
+		<wsdl:part element="tns:setCountryRequest" name="setCountryRequest"></wsdl:part>
 	</wsdl:message>
 	<wsdl:portType name="CountriesPort">
 		<wsdl:operation name="getCountry">
 			<wsdl:input message="tns:getCountryRequest" name="getCountryRequest"></wsdl:input>
 			<wsdl:output message="tns:getCountryResponse" name="getCountryResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setCountry">
+			<wsdl:input message="tns:setCountryRequest" name="setCountryRequest"></wsdl:input>
+			<wsdl:output message="tns:setCountryResponse" name="setCountryResponse"></wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="CountriesPortSoap11" type="tns:CountriesPort">
@@ -55,10 +80,19 @@
 				<soap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
+		<wsdl:operation name="setCountry">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="setCountryRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="setCountryResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="CountriesPortService">
 		<wsdl:port binding="tns:CountriesPortSoap11" name="CountriesPortSoap11">
-			<soap:address location="http://localhost:8080/ws"/>
+			<soap:address location=""/>
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
