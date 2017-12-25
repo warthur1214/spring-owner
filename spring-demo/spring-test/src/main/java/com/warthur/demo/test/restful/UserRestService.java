@@ -29,10 +29,9 @@ public class UserRestService {
 		return users.get(id);
 	}
 
-	@PostMapping("")
-	public String saveUserInfo(User user) {
-		users.put(user.getId(), user);
-		return "success";
+	@GetMapping("/success")
+	public String success() {
+		return "success22";
 	}
 
 	@PutMapping("/{id}")
