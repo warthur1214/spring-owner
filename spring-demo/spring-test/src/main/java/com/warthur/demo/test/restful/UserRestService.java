@@ -31,7 +31,7 @@ public class UserRestService {
 
 	@GetMapping("/success")
 	public String success() {
-		return "success22";
+		return "success11";
 	}
 
 	@PutMapping("/{id}")
