@@ -53,7 +53,8 @@ public class UserRestService {
 	}
 
 	@GetMapping("/my")
-	public void property() {
+	public String property() {
 		System.out.println(1111);
+		return "hello world!";
 	}
 }
